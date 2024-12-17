@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { loginUser } from '../api/api';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for routing
-import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import eye icons
-
+import { useNavigate } from 'react-router-dom'; 
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; 
+//to set Token
 const Login = ({ setToken }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate(); // Hook to navigate to weather page
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,14 +18,14 @@ const Login = ({ setToken }) => {
     try {
       const data = await loginUser({ username, password });
       if (data.token) {
-        setToken(data.token); // Pass token to parent component
+        //Pass token to parent
+        setToken(data.token);
         alert('Login Successful');
-        navigate('/weather'); // Redirect to the weather page after successful login
-      } else {
+        navigate('/weather');
         throw new Error('Login failed. Please check your username and password.');
       }
     } catch (err) {
-      // Ensure the error is coming from the response, otherwise fallback
+     
       const errorMessage = err.response?.data?.message || 'Login failed. Please check your username and password.';
       setError(errorMessage); // Set error to show in UI
       alert(errorMessage); // Alert with error message
@@ -33,9 +33,9 @@ const Login = ({ setToken }) => {
       setIsLoading(false); // End loading
     }
   };
-
+//navigat to singnup
   const handleSignUpRedirect = () => {
-    navigate('/signup'); // Corrected to navigate to '/signup'
+    navigate('/signup'); 
   };
 
   return (
@@ -51,7 +51,7 @@ const Login = ({ setToken }) => {
             onChange={(e) => setUsername(e.target.value)}
             required
             className="input-field"
-            disabled={isLoading} // Disable input field while loading
+            disabled={isLoading}
           />
         </div>
         <div className="input-group password-input-group">
@@ -62,7 +62,7 @@ const Login = ({ setToken }) => {
             onChange={(e) => setPassword(e.target.value)}
             required
             className="input-field"
-            disabled={isLoading} // Disable input field while loading
+            disabled={isLoading} 
           />
           <span
             onClick={() => setShowPassword(!showPassword)}
