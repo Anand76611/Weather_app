@@ -20,10 +20,10 @@ const SignUp = () => {
   const checkUsernameAvailability = async (username) => {
     try {
       const response = await axios.get(`http://localhost:5000/api/auth/check-username/${username}`);
-      return response.data.available; // Assuming the API returns { available: true/false }
+      return response.data.available;
     } catch (error) {
       console.error(error);
-      return false; // If an error occurs, assume the username is not available
+      return false;
     }
   };
 
@@ -35,9 +35,9 @@ const SignUp = () => {
     // Check if username is available
     const usernameAvailable = await checkUsernameAvailability(formData.username);
     if (!usernameAvailable) {
-      alert('Username is already taken. Please choose another one.'); // Show alert when username is taken
+      alert('Username is already taken. Please choose another one.'); 
       setLoading(false);
-      return; // Stop the form submission if the username is not available
+      return; 
     }
 
     try {
@@ -46,7 +46,8 @@ const SignUp = () => {
       });
 
       alert(response.data.message);
-      navigate('/login'); // Redirect to login after successful signup
+      //redirect to login
+      navigate('/login'); 
     } catch (error) {
       console.error(error);
       setError(error.response?.data?.message || 'Error during signup');
