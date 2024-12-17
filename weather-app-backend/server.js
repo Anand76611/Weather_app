@@ -5,13 +5,13 @@ const path = require('path');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
-const authRoutes = require('./routes/authRoutes');  // Import the auth routes
+const authRoutes = require('./routes/authRoutes'); 
 
 dotenv.config();
 
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:3000', // Make sure this matches your frontend URL
+  origin: 'http://localhost:3000', 
 }));
 app.use(express.json());
 
@@ -41,7 +41,7 @@ const authenticateJWT = (req, res, next) => {
 };
 
 // Use the auth routes
-app.use('/api/auth', authRoutes);  // Mount authRoutes here
+app.use('/api/auth', authRoutes);  
 
 // Weather routes
 const weatherRoutes = require('./routes/weatherRoutes');
